@@ -1,0 +1,442 @@
+/**
+ * ADB-IO Lecturer Dashboard - Page Specific Styles
+ * Green Computing: Optimized styles for lecturer dashboard pages
+ */
+
+/* Lecturer Dashboard Body */
+.lecturer-dashboard {
+  font-family: var(--font-family-primary);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  line-height: var(--line-height-normal);
+  overflow-x: hidden;
+}
+
+/* Page Transitions */
+.page-transition {
+  animation: pageSlideIn var(--transition-base);
+}
+
+@keyframes pageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Courses Page */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+}
+
+.courses-filter {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+  padding: var(--spacing-4);
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.courses-filter__search {
+  flex: 1;
+  padding: var(--spacing-3);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-sm);
+}
+
+.courses-filter__select {
+  padding: var(--spacing-3);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-sm);
+  background: var(--white);
+  min-width: 120px;
+}
+
+/* Assignments Page */
+.assignments-tabs {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-6);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.assignments-tab {
+  padding: var(--spacing-3) var(--spacing-4);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: var(--transition-fast);
+}
+
+.assignments-tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.assignments-tab:hover {
+  color: var(--text-primary);
+}
+
+.assignments-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+/* Progress Page */
+.progress-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+}
+
+.progress-chart {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.progress-chart__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-4);
+}
+
+.progress-chart__content {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-4);
+}
+
+.achievement-badge {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
+}
+
+.achievement-badge:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.achievement-badge--earned {
+  border-color: var(--success);
+  background: var(--success-light);
+}
+
+.achievement-badge__icon {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-2);
+}
+
+.achievement-badge__title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-1);
+}
+
+.achievement-badge__description {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+/* AI Assistant Page */
+.ai-assistant-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ai-chat {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+}
+
+.ai-chat__header {
+  padding: var(--spacing-4);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--ai-light);
+}
+
+.ai-chat__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.ai-chat__messages {
+  flex: 1;
+  padding: var(--spacing-4);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.ai-message {
+  max-width: 80%;
+  padding: var(--spacing-3);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+}
+
+.ai-message--user {
+  align-self: flex-end;
+  background: var(--primary);
+  color: var(--white);
+}
+
+.ai-message--assistant {
+  align-self: flex-start;
+  background: var(--gray-100);
+  color: var(--text-primary);
+}
+
+.ai-chat__input {
+  display: flex;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4);
+  border-top: 1px solid var(--border-light);
+}
+
+.ai-chat__input-field {
+  flex: 1;
+  padding: var(--spacing-3);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-sm);
+  resize: none;
+}
+
+.ai-chat__send-btn {
+  padding: var(--spacing-3);
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.ai-chat__send-btn:hover {
+  background: var(--primary-hover);
+}
+
+/* Profile Page */
+.profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  text-align: center;
+  margin-bottom: var(--spacing-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-full);
+  margin: 0 auto var(--spacing-4);
+  object-fit: cover;
+  border: 4px solid var(--primary-light);
+}
+
+.profile-name {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-2);
+}
+
+.profile-email {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-4);
+}
+
+.profile-form {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-4);
+}
+
+.form-label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-2);
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--spacing-3);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-sm);
+  transition: var(--transition-fast);
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .courses-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-4);
+  }
+  
+  .progress-overview {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .courses-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .assignments-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .ai-chat {
+    height: 400px;
+  }
+  
+  .ai-message {
+    max-width: 90%;
+  }
+  
+  .achievements-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ai-assistant-container,
+  .profile-container {
+    margin: 0;
+  }
+  
+  .profile-header,
+  .profile-form {
+    padding: var(--spacing-4);
+  }
+  
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .profile-name {
+    font-size: var(--font-size-xl);
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .courses-filter,
+  .progress-chart,
+  .achievement-badge,
+  .ai-chat,
+  .profile-header,
+  .profile-form {
+    background: var(--gray-800);
+    border-color: var(--gray-700);
+  }
+  
+  .ai-chat__header {
+    background: var(--gray-700);
+  }
+  
+  .ai-message--assistant {
+    background: var(--gray-700);
+  }
+  
+  .form-input,
+  .courses-filter__search,
+  .courses-filter__select,
+  .ai-chat__input-field {
+    background: var(--gray-700);
+    border-color: var(--gray-600);
+    color: var(--white);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .ai-chat,
+  .ai-chat__input {
+    display: none;
+  }
+  
+  .courses-grid,
+  .assignments-list,
+  .achievements-grid {
+    break-inside: avoid;
+  }
+}

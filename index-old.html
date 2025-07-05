@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADB-IO Lecturer Dashboard</title>
+    <link rel="stylesheet" href="style.css?v=20250705">
+    <style>
+        /* Force sidebar visibility on desktop - Critical Fix */
+        @media (min-width: 769px) {
+            .sidebar {
+                position: relative !important;
+                transform: translateX(0) !important;
+                display: flex !important;
+            }
+            .main-content {
+                margin-left: 280px !important;
+            }
+        }
+
+        /* Ensure sidebar base styles */
+        .sidebar {
+            width: 280px !important;
+            background: #ffffff !important;
+            border-right: 1px solid #e5e7eb !important;
+            position: fixed !important;
+            height: 100vh !important;
+            left: 0 !important;
+            top: 0 !important;
+            z-index: 1000 !important;
+        }
+    </style>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <link rel="icon" type="image/png" href="assets/icons/icon-192x192.png">
+</head>
+<body>
+    <div id="app">
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="loading-screen">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <h2>ADB-IO Lecturer Dashboard</h2>
+                <p>Loading your teaching environment...</p>
+            </div>
+        </div>
+
+        <!-- Main Application -->
+        <div class="app-container">
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar">
+                <div class="sidebar-header">
+                    <div class="logo">
+                        <div class="logo-icon">🌱</div>
+                        <div>
+                            <span class="logo-text">ADB-IO</span>
+                            <div style="font-size: 0.7rem; color: var(--green-dark); font-weight: 500;">Green AI</div>
+                        </div>
+                    </div>
+                    <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+
+                <div class="sidebar-content">
+                    <ul class="nav-menu">
+                        <li class="nav-item active" data-section="dashboard">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">Dashboard</span>
+                        </li>
+                        <li class="nav-item" data-section="course-creation">
+                            <span class="nav-icon">➕</span>
+                            <span class="nav-text">Create Course</span>
+                        </li>
+                        <li class="nav-item" data-section="courses">
+                            <span class="nav-icon">📚</span>
+                            <span class="nav-text">My Courses</span>
+                        </li>
+                        <li class="nav-item" data-section="students">
+                            <span class="nav-icon">👥</span>
+                            <span class="nav-text">Students</span>
+                        </li>
+                        <li class="nav-item" data-section="analytics">
+                            <span class="nav-icon">📈</span>
+                            <span class="nav-text">Analytics</span>
+                        </li>
+                        <li class="nav-item" data-section="resources">
+                            <span class="nav-icon">📁</span>
+                            <span class="nav-text">Resources</span>
+                        </li>
+                        <li class="nav-item" data-section="settings">
+                            <span class="nav-icon">⚙️</span>
+                            <span class="nav-text">Settings</span>
+                        </li>
+                    </ul>
+
+                    <div class="sidebar-footer">
+                        <div class="user-info">
+                            <img id="user-avatar" src="" alt="User Avatar" class="user-avatar">
+                            <div class="user-details">
+                                <span id="user-name" class="user-name">Loading...</span>
+                                <span class="user-role">Lecturer</span>
+                            </div>
+                        </div>
+
+                        <!-- Green Computing Metrics -->
+                        <div class="green-metrics">
+                            <div class="green-metrics__title">
+                                🌱 Green Impact
+                            </div>
+                            <div class="green-metrics__stats">
+                                <div class="metric">
+                                    <span class="metric__value" id="carbon-saved">2.4kg</span>
+                                    <span class="metric__label">CO₂ Saved</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric__value" id="energy-saved">75%</span>
+                                    <span class="metric__label">Energy Saved</span>
+                                </div>
+                            </div>
+                            <div class="green-badge">
+                                🌿 Carbon Neutral
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Header -->
+                <header class="main-header">
+                    <div class="header-content">
+                        <h1 id="page-title">Dashboard</h1>
+                        <div class="header-actions">
+                            <button class="btn btn-primary" data-section="course-creation">
+                                ➕ New Course
+                            </button>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="main-section">
+                    <!-- Welcome Header -->
+                    <div class="welcome-header">
+                        <div class="welcome-content">
+                            <h1 class="welcome-title">Welcome back, <span id="lecturer-name">Dr. Sarah</span>! 👋</h1>
+                            <p class="welcome-subtitle">Here's what's happening with your courses today</p>
+                        </div>
+                        <div class="welcome-actions">
+                            <button class="btn btn-primary" onclick="showSection('course-creation')">
+                                <span>➕</span> Create New Course
+                            </button>
+                            <button class="btn btn-outline">
+                                <span>📊</span> View Analytics
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stats Overview -->
+                    <div class="stats-overview">
+                        <div class="stats-card primary">
+                            <div class="stat-header">
+                                <div class="stat-icon">📚</div>
+                                <div class="stat-trend positive">+12%</div>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="courses-created">8</h3>
+                                <p>Active Courses</p>
+                                <span class="stat-detail">2 new this month</span>
+                            </div>
+                        </div>
+
+                        <div class="stats-card secondary">
+                            <div class="stat-header">
+                                <div class="stat-icon">👥</div>
+                                <div class="stat-trend positive">+24%</div>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="students-enrolled">247</h3>
+                                <p>Total Students</p>
+                                <span class="stat-detail">18 enrolled today</span>
+                            </div>
+                        </div>
+
+                        <div class="stats-card success">
+                            <div class="stat-header">
+                                <div class="stat-icon">⭐</div>
+                                <div class="stat-trend positive">+0.2</div>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="instructor-rating">4.8</h3>
+                                <p>Avg. Rating</p>
+                                <span class="stat-detail">Based on 156 reviews</span>
+                            </div>
+                        </div>
+
+                        <div class="stats-card green">
+                            <div class="stat-header">
+                                <div class="stat-icon">🌱</div>
+                                <div class="stat-trend positive">+5%</div>
+                            </div>
+                            <div class="stat-content">
+                                <h3>95%</h3>
+                                <p>Green Score</p>
+                                <span class="stat-detail">Carbon neutral teaching</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Dashboard Content -->
+                    <div class="dashboard-main">
+                        <!-- Recent Activity -->
+                        <div class="activity-section">
+                            <div class="section-header">
+                                <h2>Recent Activity</h2>
+                                <button class="btn-link">View All</button>
+                            </div>
+                            <div class="activity-feed">
+                                <div class="activity-item">
+                                    <div class="activity-avatar">📝</div>
+                                    <div class="activity-content">
+                                        <div class="activity-main">
+                                            <strong>New assignment submitted</strong>
+                                            <p>Digital Business Strategy - Assignment 3</p>
+                                        </div>
+                                        <div class="activity-meta">
+                                            <span class="activity-time">2 hours ago</span>
+                                            <span class="activity-badge">New</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="activity-item">
+                                    <div class="activity-avatar">👥</div>
+                                    <div class="activity-content">
+                                        <div class="activity-main">
+                                            <strong>5 new students enrolled</strong>
+                                            <p>Data Analytics Fundamentals</p>
+                                        </div>
+                                        <div class="activity-meta">
+                                            <span class="activity-time">4 hours ago</span>
+                                            <span class="activity-badge success">Enrolled</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="activity-item">
+                                    <div class="activity-avatar">📊</div>
+                                    <div class="activity-content">
+                                        <div class="activity-main">
+                                            <strong>Weekly analytics ready</strong>
+                                            <p>Performance report generated</p>
+                                        </div>
+                                        <div class="activity-meta">
+                                            <span class="activity-time">1 day ago</span>
+                                            <span class="activity-badge info">Report</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="activity-item">
+                                    <div class="activity-avatar">🌱</div>
+                                    <div class="activity-content">
+                                        <div class="activity-main">
+                                            <strong>Green score improved</strong>
+                                            <p>Carbon footprint reduced by 15%</p>
+                                        </div>
+                                        <div class="activity-meta">
+                                            <span class="activity-time">2 days ago</span>
+                                            <span class="activity-badge green">Eco</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions Sidebar -->
+                        <div class="quick-actions-sidebar">
+                            <div class="section-header">
+                                <h2>Quick Actions</h2>
+                            </div>
+
+                            <div class="action-cards">
+                                <div class="action-card primary" onclick="showSection('course-creation')">
+                                    <div class="action-icon">➕</div>
+                                    <div class="action-content">
+                                        <h3>Create Course</h3>
+                                        <p>Start a new course with AI assistance</p>
+                                    </div>
+                                    <div class="action-arrow">→</div>
+                                </div>
+
+                                <div class="action-card secondary" onclick="showSection('students')">
+                                    <div class="action-icon">👥</div>
+                                    <div class="action-content">
+                                        <h3>Manage Students</h3>
+                                        <p>View and organize your students</p>
+                                    </div>
+                                    <div class="action-arrow">→</div>
+                                </div>
+
+                                <div class="action-card success" onclick="showSection('analytics')">
+                                    <div class="action-icon">📊</div>
+                                    <div class="action-content">
+                                        <h3>Analytics</h3>
+                                        <p>Track performance and engagement</p>
+                                    </div>
+                                    <div class="action-arrow">→</div>
+                                </div>
+
+                                <div class="action-card green" onclick="showSection('resources')">
+                                    <div class="action-icon">🌱</div>
+                                    <div class="action-content">
+                                        <h3>Green Resources</h3>
+                                        <p>Eco-friendly learning materials</p>
+                                    </div>
+                                    <div class="action-arrow">→</div>
+                                </div>
+                            </div>
+
+                            <!-- Green Computing Tips -->
+                            <div class="green-tips">
+                                <div class="tips-header">
+                                    <h3>🌱 Green Teaching Tips</h3>
+                                </div>
+                                <div class="tip-item">
+                                    <span class="tip-icon">💡</span>
+                                    <p>Use digital materials to reduce paper waste</p>
+                                </div>
+                                <div class="tip-item">
+                                    <span class="tip-icon">⚡</span>
+                                    <p>Schedule classes during peak renewable energy hours</p>
+                                </div>
+                                <div class="tip-item">
+                                    <span class="tip-icon">🔄</span>
+                                    <p>Encourage students to use energy-efficient devices</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Course Creation Section -->
+                <section id="course-creation" class="main-section" style="display: none;">
+                    <!-- Course creation content will be dynamically generated -->
+                </section>
+
+                <!-- Other Sections (Placeholder) -->
+                <section id="courses" class="main-section" style="display: none;">
+                    <h2>My Courses</h2>
+                    <p>Course management interface coming soon...</p>
+                </section>
+
+                <section id="students" class="main-section" style="display: none;">
+                    <h2>Students</h2>
+                    <p>Student management interface coming soon...</p>
+                </section>
+
+                <section id="analytics" class="main-section" style="display: none;">
+                    <h2>Analytics</h2>
+                    <p>Analytics dashboard coming soon...</p>
+                </section>
+
+                <section id="resources" class="main-section" style="display: none;">
+                    <h2>Resources</h2>
+                    <p>Resource management interface coming soon...</p>
+                </section>
+
+                <section id="settings" class="main-section" style="display: none;">
+                    <h2>Settings</h2>
+                    <p>Settings interface coming soon...</p>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+    <script>
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
