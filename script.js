@@ -80,9 +80,13 @@ class LecturerDashboardApp {
             await Promise.all([
                 this.modules.dashboard.init(),
                 this.modules.courses.init(),
+                this.modules.createCourse.init(),
+                this.modules.students.init(),
                 this.modules.assignments.init(),
-                this.modules.progress.init(),
-                this.modules.aiAssistant.init()
+                this.modules.grades.init(),
+                this.modules.analytics.init(),
+                this.modules.carbonFootprint.init(),
+                this.modules.greenTips.init()
             ]);
 
             console.log('All modules initialized successfully');
@@ -478,4 +482,4 @@ if (document.readyState === 'loading') {
 }
 
 // Export for potential external use
-export default StudentPortalApp;
+export default LecturerDashboardApp;
