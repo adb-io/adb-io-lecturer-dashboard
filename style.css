@@ -969,7 +969,7 @@ body {
 @media (min-width: 769px) {
     .sidebar {
         position: relative;
-        transform: translateX(0);
+        transform: translateX(0) !important;
     }
 }
 
