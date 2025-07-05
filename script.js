@@ -120,7 +120,7 @@ class LecturerDashboardApp {
 
     setupNavigation() {
         // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
         const sidebar = document.getElementById('sidebar');
 
         if (mobileMenuBtn && sidebar) {
@@ -147,7 +147,7 @@ class LecturerDashboardApp {
 
     handleOutsideClick(e) {
         const sidebar = document.getElementById('sidebar');
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
 
         if (sidebar && !sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
             sidebar.classList.remove('sidebar--open');
